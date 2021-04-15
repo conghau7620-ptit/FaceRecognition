@@ -11,7 +11,7 @@ recognizer.read('recognizer/trainingData.yml')
 
 def getProfile(id):
 
-    connect = sqlite3.connect('D:\PycharmProjects\FaceRecognition\dataFace.db')
+    connect = sqlite3.connect('dataFace.db')
     query = "SELECT * FROM people WHERE ID=" + str(id)
     cursor = connect.execute(query)
 
@@ -41,7 +41,7 @@ while(True):
 
         id, confidence = recognizer.predict(roi_gray)
 
-        if (confidence<40):
+        if (confidence<50):
             profile = getProfile(id)
 
             if (profile != None):
@@ -50,9 +50,9 @@ while(True):
         else:
             cv2.putText(frame, "Unknow", (x+10, y+h+30), fontFace, 1, (0,0,255), 2)
 
-    cv2.imshow('image', frame)
+    cv2.imshow('Face Recognition', frame)
     if (cv2.waitKey(1) == ord('q')):
-        break;
+        break
 
 cap.release()
 cv2.destroyAllWindows()

@@ -5,7 +5,7 @@ from PIL import Image
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 
-path = 'venv/dataSet'
+path = 'dataSet'
 
 def getImageWithId(path):
 
@@ -24,17 +24,16 @@ def getImageWithId(path):
 
         print(faceNp)
 
-        Id = int(imagePath.split('/')[1].split('.')[1])
+        Id = int(imagePath.split('\\')[1].split('.')[1])
 
         faces.append(faceNp)
         IDs.append(Id)
-
         cv2.imshow('training', faceNp)
         cv2.waitKey(10)
 
     return faces, IDs
 
-
+getImageWithId(path)
 faces, Ids = getImageWithId(path)
 
 recognizer.train(faces, np.array(Ids))

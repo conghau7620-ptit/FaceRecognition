@@ -4,7 +4,7 @@ import sqlite3
 import os
 
 def insertOrUpdate(id, name):
-    connect = sqlite3.connect('D:\PycharmProjects\FaceRecognition\dataFace.db')
+    connect = sqlite3.connect('dataFace.db')
 
     query = "SELECT * FROM people WHERE ID=" + str(id)
     cursor = connect.execute(query)
@@ -55,7 +55,7 @@ while (True):
     cv2.imshow('frame', frame)
     cv2.waitKey(1)
 
-    if (sampleNum > 300):
+    if (sampleNum > 100):
         break
 
 cap.release()
